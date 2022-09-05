@@ -26,7 +26,6 @@ app.use('/users', usersRouter);
 app.use('/signin', require('./routes/signin')); //로그인
 app.use('/signup', require('./routes/signup')); //회원가입
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
