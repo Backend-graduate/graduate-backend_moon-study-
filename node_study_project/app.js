@@ -5,20 +5,27 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+//comment router
+var commentRouter = require('./routes/comment');
+//mongoose connect
+var connect = require('./schemas');
 
 var app = express();
+connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/comments', commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -35,12 +42,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-//mongo db 연결
-const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://moon:1234@cluster0.k8htexd.mongodb.net/test", { 
-    useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => console.log('Successfully connected to mongodb!'))
-    .catch(e => console.error(e));
 
 module.exports = app;
