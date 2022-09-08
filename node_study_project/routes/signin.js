@@ -21,16 +21,16 @@ router.get('/user',(req,res)=>{
   res.send('open /user');
 });
 
-router.post('/user',(req,res)=>{
-    //  var user = new User({
-    //     email: req.body.text
-    //  });
+// router.post('/user',(req,res)=>{
+//      var user = new User({
+//         email: req.body.text
+//      });
     
-    //  user.save().then((doc)=>{
-    //      res.send(doc)
-    //  }, (e)=>{
-    //      res.status(400).send(e);
-    //  });
- });
+//      user.save().then((doc)=>{
+//          res.send(doc)
+//      }, (e)=>{
+//          res.status(400).send(e);
+//      });
+//  });
 
 module.exports = router;

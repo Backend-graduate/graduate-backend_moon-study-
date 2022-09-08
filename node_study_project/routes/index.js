@@ -24,6 +24,7 @@ router.get('/', async (req, res, next) => {
     //모든 사용자를 찾음. User 스키마를 require 한 뒤 find 사용 가능
     res.render('mongoose', { users });
     //렌더링할 때 users를 변수로 넣어줌
+    next();
   }
   catch(err) {
     console.error(err);

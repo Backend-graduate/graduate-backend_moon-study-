@@ -12,6 +12,7 @@ router.route('/')
       const users = await User.find({});
       //json형식으로 반환
       res.json(users);
+      next();
     } catch (err) {
       console.error(err);
       next(err);
@@ -43,6 +44,7 @@ router.get('/:id/comments', async (req, res, next) => {
       .populate('commenter');
     console.log(comments);
     res.json(comments);
+    next();
   } catch (err) {
     console.error(err);
     next(err);
