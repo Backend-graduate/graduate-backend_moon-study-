@@ -1,0 +1,24 @@
+<main>
+    <ul>
+      {% for post in postList%}
+      <li class="todo_list">
+        <form action="/delete" method="post">
+          <input
+            type="text"
+            name="id"
+            style="display: none"
+            value="{{ post.korName }}"
+          />
+          <p class="list_title">korName</p>
+          <p class="list_info">{{post.korName}}</p>
+          <p class="list_title">due engName</p>
+          <p class="list_info">{{post.engName}}</p>
+          <div id="btn_cont">
+            <button type="button">수정하기</button>
+            <button type="submit">삭제하기</button>
+          </div>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </main>

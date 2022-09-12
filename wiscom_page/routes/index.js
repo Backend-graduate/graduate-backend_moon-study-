@@ -29,13 +29,36 @@ router.post('/create', async(req, res) => {
     });
     
     await developer.save();
-    //return res.redirect("/");
-    res.send('저장 완료');
+    //res.send('저장 완료');
+    res.redirect('http://localhost:3000/list');
   }
   catch(err) {
     console.error(err);
     next(err);
   }
 });
+
+router.get('/list', async (req, res) => {
+  try {
+    console.log("들어왔다..");
+    const postList = await Developer.find();
+    res.render('list.html', { postList });
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
+// router.get('/:id/comments', async (req, res, next) => {
+//   try {
+//     const comments = await Comment.find({ commenter: req.params.id })
+//       .populate('commenter');
+//     console.log(comments);
+//     res.json(comments);
+//   } catch (err) {
+//     console.error(err);
+//     next(err);
+//   }
+// });
 
 module.exports = router;
