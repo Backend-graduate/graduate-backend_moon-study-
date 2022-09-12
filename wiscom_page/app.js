@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+var nunjucks = require('nunjucks');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -15,11 +16,13 @@ connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
+app.set('view engine', 'html');
+nunjucks.configure('views', { express: app });
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
