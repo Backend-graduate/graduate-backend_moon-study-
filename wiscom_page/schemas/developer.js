@@ -1,26 +1,16 @@
 const mongoose = require('mongoose');
 const developerSchema = new mongoose.Schema({
-  korName: String, //한글 이름
-  engName: String, //영어 이름
-  review: String, //소감
+    korName:    { type: String, trim: true },                   //한글 이름
+    engName:    { type: String, trim: true, lowercase: true},   //영어 이름
+    major:      { type: String, trim: true, maxlength: 10 },    //전공
+    studentID : { type: String, trim: true, unique: 1 },        //학번
+    image: String,                                              //개인 이미지 (우선 String으로 함)
 
-  picture: String, //개인 이미지 (우선 String으로 함)
-  projectName: String, //프로젝트 이름
-  teamName: String,
+    review:     { type: String,  maxlength: 100 },              //소감
+
+    projectName:{ type: String,  maxlength: 10 },               //프로젝트 이름
+    teamName:   { type: String, trim: true },                   //팀 이름
+    role:       { type: String, }                               //역할
 });
 
-/*
-   name: {
-        type: String,
-        maxlength: 50,
-    },
-    password: {
-        type: String,
-        minlength: 7,
-    },
-    sex: {
-	    type: String,
-    }
-});
-*/
 module.exports = mongoose.model('Developer', developerSchema);
