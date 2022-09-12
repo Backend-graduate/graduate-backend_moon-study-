@@ -9,4 +9,18 @@ const developerSchema = new mongoose.Schema({
   teamName: String,
 });
 
+/*
+   name: {
+        type: String,
+        maxlength: 50,
+    },
+    password: {
+        type: String,
+        minlength: 7,
+    },
+    sex: {
+	    type: String,
+    }
+});
+*/
 module.exports = mongoose.model('Developer', developerSchema);
