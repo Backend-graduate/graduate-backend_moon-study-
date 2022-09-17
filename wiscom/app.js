@@ -5,11 +5,7 @@ var path = require('path');
 
 var indexRouter = require('./index');
 
-//mongoose connect
-//var connect = require('./schemas');
-
 var app = express();
-connect();
 
 // view engine setup
 app.set('view engine', 'html');
