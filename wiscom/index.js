@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 const port = 5000
 var app = express();
+
 const upload = require('./upload');
 
 app.get('/', function(req, res, next) {
@@ -15,14 +16,27 @@ app.get('/', function(req, res, next) {
 //이미지 저장 오류 TypeError: this.client.send is not a function
 
 //이미지 저장 코드
-app.post('/single', upload.single('img'), (req, res, next) => {
-  res.status(201).send(req.file);
-});
+// app.post('/single', upload.single('img'), (req, res, next) => {
+//   res.status(201).send(req.file);
+// });
 
-app.post('/multipart', upload.array('img'), (req, res, next) => {
-res.status(201).send(req.files);
-});
+// app.post('/multipart', upload.array('img'), (req, res, next) => {
+// res.status(201).send(req.files);
+// });
 
+//https://blog.pumpkin-raccoon.com/116
+//error 해결: 버전 오류
+//TypeError: this.client.send is not a function<br> &nbsp; &nbsp;at Upload.        __uploadUsingPut
+//https://velog.io/@wngud4950/AWS-multer-s3-upload-%EC%98%A4%EB%A5%98
+app.post('/test/image', upload.single('image'), (req, res) => {
+  res.send('good!')
+})
+
+//스키마에서 관리하기 실패..
+//https://ssong915.tistory.com/51
+//https://velog.io/@server30sopt/Node.js-Express-Typescript%EB%A1%9C-S3%EC%97%90-image-upload-%ED%95%98%EA%B8%B0-Feat.-multer-aws-sdk
+//https://iot624.tistory.com/184#Service
+//app.post('/upload', upload.single('image'), FileController.uploadFilesToS3);
 
 
 app.get('/developers', function(req, res, next) {
@@ -73,8 +87,8 @@ mongoose
   .catch(e => console.error(e));
 
   //스키마 불러오기
-require('./schemas/developer');
-require('./schemas/project');
+require('./models/developer');
+require('./models/project');
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
