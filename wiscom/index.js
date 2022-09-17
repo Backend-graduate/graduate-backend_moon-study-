@@ -3,6 +3,7 @@ const express = require('express') //③번 단계에서 다운받았던 express
 var mongoose = require('mongoose');
 var router = express.Router();
 const port = 5000
+require('dotenv').config();
 var app = express();
 
 const upload = require('./upload');
@@ -82,7 +83,7 @@ app.get('/list', async (req, res) => {
 
 // CONNECT TO MONGODB SERVER
 mongoose
-  .connect('mongodb+srv://munseoyeon:mun1234@cluster0.2gktvkj.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGOBB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Successfully connected to mongodb'))
   .catch(e => console.error(e));
 
